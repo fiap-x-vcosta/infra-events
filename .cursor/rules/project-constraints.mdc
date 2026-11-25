@@ -1,0 +1,15 @@
+---
+description: Restrições Terraform dos tópicos Pub/Sub (infra-events)
+alwaysApply: true
+---
+
+# Restrições do projeto (`infra-events`)
+
+- Escopo: **Terraform** dos **tópicos Pub/Sub** do ciclo de demo. Apply e destroy manuais (`tf-apply` / `tf-destroy`).
+- **Só tópicos** + output `topic_names`. Sem subscriptions, sem DLQ e sem bindings de IAM publisher/subscriber (ficam no Terraform de cada serviço dono).
+- Sem Cloud SQL, sem GKE, sem buckets de mídia e sem código de aplicação.
+- State remoto GCS (`fiap-x-vcosta-tfstate`, prefix `infra-events`). Região **`us-central1`**, projeto **`fiap-x-vcosta`**.
+- Sem secrets no Git.
+- CI: `fmt` + `validate` + `plan` via `fiap-x-vcosta/actions` `ci-terraform`; root module em `terraform/`. Pin Terraform **1.16.1**.
+- README autocontido na org [`fiap-x-vcosta`](https://github.com/fiap-x-vcosta): sem referências a pastas fora do Git da org.
+- Proibida a string que combina o produto com “videos” em camel/kebab/snake. Preferir `fiap-x`, `processamento`, `midia`, `frames`.

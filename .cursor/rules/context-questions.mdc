@@ -1,0 +1,12 @@
+---
+description: Nunca assumir contexto; perguntar antes de decisões ambíguas
+alwaysApply: true
+---
+
+# Contexto e perguntas
+
+- Nunca assumir ids de tópico, filtros de subscription, IAM publisher/subscriber ou custo quando estiverem ambíguos.
+- Antes de `apply`/`destroy` ou de alterar o conjunto de tópicos já aplicados: perguntar.
+- Mudança nos ids de tópico exige confirmação explícita — quebra Terraform e código dos serviços consumidores.
+- Preferir 1–2 perguntas críticas por vez; propor opções concretas.
+- Canon de produto (catálogo de eventos): [`fiap-x-vcosta/docs`](https://github.com/fiap-x-vcosta/docs). Decisões de infra deste repo: README.
