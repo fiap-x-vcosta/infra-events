@@ -14,7 +14,7 @@ Canon de produto: [`docs`](https://github.com/fiap-x-vcosta/docs) — [catálogo
 
 Quem publica recebe `roles/pubsub.publisher` no Terraform do **próprio serviço**. Subscription, `roles/pubsub.subscriber` e tópico de dead-letter nascem no Terraform do **serviço que consome**. Este stack **não** cria subscription nem binding de IAM.
 
-Root module: [`terraform/`](terraform/) (entra em PR seguinte). Pin Terraform: **1.16.1** (alinhado a [`actions`](https://github.com/fiap-x-vcosta/actions)).
+Root module: [`terraform/`](terraform/). Pin Terraform: **1.16.1** (alinhado a [`actions`](https://github.com/fiap-x-vcosta/actions)).
 
 ## Tópicos
 
@@ -45,7 +45,18 @@ Este stack não lê o state de outro repositório. Não há org var para id de t
 | **CI** `plan` (OIDC) | PR | Sim |
 | **`tf-apply` / `tf-destroy`** | Janela da demo / sob demanda | Só manual (`workflow_dispatch`) |
 
-Merge em `main` **nunca** cria tópico. Callers e root module Terraform entram em PRs seguintes.
+Merge em `main` **nunca** cria tópico. Callers `tf-apply` / `tf-destroy` entram em PR seguinte.
+
+## Comandos locais
+
+```bash
+cd terraform
+terraform fmt -check
+terraform init -backend=false
+terraform validate
+```
+
+Plan/apply local exigem ADC (`gcloud auth application-default login`) e backend GCS (`terraform init` sem `-backend=false`).
 
 ## Roles da SA `github-actions` (least-privilege)
 
