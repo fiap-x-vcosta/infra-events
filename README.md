@@ -45,7 +45,9 @@ Este stack não lê o state de outro repositório. Não há org var para id de t
 | **CI** `plan` (OIDC) | PR | Sim |
 | **`tf-apply` / `tf-destroy`** | Janela da demo / sob demanda | Só manual (`workflow_dispatch`) |
 
-Merge em `main` **nunca** cria tópico. Callers `tf-apply` / `tf-destroy` entram em PR seguinte.
+Merge em `main` **nunca** cria tópico. O gatilho de apply/destroy é **manual** (`workflow_dispatch` em [`.github/workflows/`](.github/workflows/)).
+
+Os callers usam [`fiap-x-vcosta/actions`](https://github.com/fiap-x-vcosta/actions) e autenticam com as org vars `GCP_WORKLOAD_IDENTITY_PROVIDER` e `GCP_SERVICE_ACCOUNT_EMAIL`. `project_id` e `region` são defaults em [`terraform/variables.tf`](terraform/variables.tf).
 
 ## Comandos locais
 
